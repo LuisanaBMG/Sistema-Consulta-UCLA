@@ -1,6 +1,6 @@
 <?php
 
-$Connection= mysqli_connect("localhost", "root", "", "bd_certificados");
+$Connection= mysqli_connect(" ", " ", "", " ");
 
 /*if($Connection){
     echo 'Conexión a la base de datos exitosa';
