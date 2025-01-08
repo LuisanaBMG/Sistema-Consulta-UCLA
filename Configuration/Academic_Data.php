@@ -119,7 +119,7 @@ if (isset($_POST['Register_Type'])) {
                 $Document_Type = validate($_POST['Document_Type']);
                 $Identification_Document = validate($_POST['Identification_Document']);
                 $Date_Birth = validate($_POST['Date_Birth']);
-                $Firts_Name = strtoupper(validate($_POST['Firts_Name']));
+                $First_Name = strtoupper(validate($_POST['First_Name']));
                 $Second_Name = !empty($_POST['Second_Name']) ? strtoupper(validate($_POST['Second_Name'])) : '';
                 $First_LastName = strtoupper(validate($_POST['First_LastName']));
                 $Second_LastName = !empty($_POST['Second_LastName']) ? strtoupper(validate($_POST['Second_LastName'])) : '';
@@ -129,14 +129,14 @@ if (isset($_POST['Register_Type'])) {
                 $Comment_Responsible = !empty($_POST['Comment_Responsible']) ? strtoupper(validate($_POST['Comment_Responsible'])) : '';
 
                 // Check if fields are empty
-                if (empty($Document_Type) || empty($Identification_Document) || empty($Date_Birth) || empty($Firts_Name) || empty($First_LastName) || empty($Phone_Number) || empty($Email) || empty($Gender)) {
+                if (empty($Document_Type) || empty($Identification_Document) || empty($Date_Birth) || empty($First_Name) || empty($First_LastName) || empty($Phone_Number) || empty($Email) || empty($Gender)) {
                     header("Location:../PHP/Academic_Data.php?error=Datos_Vacios");
                     exit();
                 }
 
                 // Prepare and execute INSERT query for responsible
-                $ResponsibleRegistration = $Connection->prepare("INSERT INTO responsibles (Document_Type, Identification_Document, Date_Birth, Firts_Name, Second_Name, First_LastName, Second_LastName, Phone_Number, Email, Gender, Comment_Responsible, Date, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)");
-                $ResponsibleRegistration->bind_param("ssssssssssss", $Document_Type, $Identification_Document, $Date_Birth, $Firts_Name, $Second_Name, $First_LastName, $Second_LastName, $Phone_Number, $Email, $Gender, $Comment_Responsible, $Status);
+                $ResponsibleRegistration = $Connection->prepare("INSERT INTO responsibles (Document_Type, Identification_Document, Date_Birth, First_Name, Second_Name, First_LastName, Second_LastName, Phone_Number, Email, Gender, Comment_Responsible, Date, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)");
+                $ResponsibleRegistration->bind_param("ssssssssssss", $Document_Type, $Identification_Document, $Date_Birth, $First_Name, $Second_Name, $First_LastName, $Second_LastName, $Phone_Number, $Email, $Gender, $Comment_Responsible, $Status);
                 $ResponsibleRegistration->execute();
 
                 $Id_Responsible = $mysqli->insert_id;

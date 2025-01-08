@@ -20,16 +20,16 @@ function validate($data)
 
 $action = $_POST['action_btn'] ?? '';
 
-$Id_Studies = intval($_POST['Id_Studies']);
-$Id_Study_Types = intval($_POST['Id_Study_Types']);
+$Id_Studies = intval(validate($_POST['Id_Studies']));
+$Id_Study_Types = intval(validate($_POST['Id_Study_Types']));
 $Cohort = validate($_POST['Cohort']);
-$Id_Academy = intval($_POST['Id_Academy']);
+$Id_Academy = intval(validate($_POST['Id_Academy']));
 $Study_Name = strtoupper(validate($_POST['Study_Name']));;
 $Number_Hours = validate($_POST['Number_Hours']);
-$Id_Units = intval($_POST['Id_Units']);
-$Year = validate($_POST['Year']);
+$Id_Units = intval(validate($_POST['Id_Units']));
+$Year = validate(validate($_POST['Year']));
 $Identification_Document = validate($_POST['Identification_Document']);
-$Id_RA = intval($_POST['Id_RA']);
+$Id_RA = intval(validate($_POST['Id_RA']));
 $Comment_Studies = strtoupper(validate($_POST['Comment_Studies']));;
 
 $Status = 'Inactive';

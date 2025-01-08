@@ -1,6 +1,6 @@
 <?php
 
-$Connection= mysqli_connect(" ", " ", "", " ");
+$Connection= mysqli_connect("localhost", "root", "", "ucla_system");
 
 /*if($Connection){
     echo 'Conexión a la base de datos exitosa';

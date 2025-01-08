@@ -8,9 +8,7 @@ if (!isset($_SESSION['Id_User'])) {
 }
 
 $Id_User = $_SESSION['Id_User'];
-$Status = "Active";
 
-// Function to validate and sanitize input data
 function validate($data)
 {
     $data = trim($data);
@@ -19,16 +17,16 @@ function validate($data)
     return $data;
 }
 
-$Id_Study_Types = intval($_POST['Id_Study_Types']);
-$Id_Units = intval($_POST['Id_Units']);
+$Id_Study_Types = intval(validate($_POST['Id_Study_Types']));
+$Id_Units = intval(validate($_POST['Id_Units']));
 $Cohort = strtoupper(validate($_POST['Cohort']));
 $Year = strtoupper(validate($_POST['Year']));
-$Id_Academy = intval($_POST['Id_Academy']);
+$Id_Academy = intval(validate($_POST['Id_Academy']));
 $Identification_Document = strtoupper(validate($_POST['Identification_Document']));
 $Study_Name = strtoupper(validate($_POST['Study_Name']));
 $Id_RA = intval(validate($_POST['Id_RA']));
 $Number_Hours = strtoupper(validate($_POST['Number_Hours']));
-$Comment_Studies = strtoupper(validate($_POST['Comment_Studies']));
+$Comment_Studies = !empty($_POST['Comment_Studies']) ? strtoupper(validate($_POST['Comment_Studies'])) : '';
 
 $Status = 'Active';
 
@@ -42,4 +40,6 @@ if (empty($Id_Study_Types) || empty($Id_Units) || empty($Cohort) || empty($Year)
     $StudieRegistration = $Connection->prepare("INSERT INTO studies (Id_Study_Types, Id_Units, Cohort, Year, Id_Academy, Identification_Document, Study_Name, Id_RA, Number_Hours, Comment_Studies, Date, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)");
     $StudieRegistration->bind_param("iiiiiisiiss", $Id_Study_Types, $Id_Units, $Cohort, $Year, $Id_Academy, $Identification_Document, $Study_Name, $Id_RA, $Number_Hours, $Comment_Studies, $Status);
     $StudieRegistration->execute();
+
+    header("Location: ../PHP/Register_Study.php?success=Datos_Registrados");
 }

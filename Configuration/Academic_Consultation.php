@@ -5,6 +5,7 @@ if (!isset($_SESSION['Id_User'])) {
 }
 
 try {
+
     $QueryStudyType = "SELECT Id_Study_Types, Diminutive_Study, Study_Type, Date, Status FROM study_types WHERE Status = 'Active'";
     $StatementStudyType = $Connection->prepare($QueryStudyType);
     if ($StatementStudyType === false) {
@@ -73,7 +74,7 @@ try {
 
 
 
-    $QueryResponsibles = "SELECT Id_Responsible, Document_Type, Identification_Document, Date_Birth, Firts_Name, Second_Name, First_LastName, Second_LastName, Phone_Number, Email, Gender, Comment_Responsible, Date, Status FROM responsibles WHERE Status = 'Active'";
+    $QueryResponsibles = "SELECT Id_Responsible, Document_Type, Identification_Document, Date_Birth, First_Name, Second_Name, First_LastName, Second_LastName, Phone_Number, Email, Gender, Comment_Responsible, Date, Status FROM responsibles WHERE Status = 'Active'";
     $StatementResponsibles = $Connection->prepare($QueryResponsibles);
     if ($StatementResponsibles === false) {
         header("Location: ../PHP/Academic_Consultation.php?error=Error_BaseDatos");

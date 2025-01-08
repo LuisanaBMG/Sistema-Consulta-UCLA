@@ -50,7 +50,7 @@ if (isset($_POST['Id_Study_Types']) && !empty($_POST['Id_Study_Types'])) {
     $Document_Type = validate($_POST['Document_Type']);
     $Identification_Document = validate($_POST['Identification_Document']);
     $Date_Birth = validate($_POST['Date_Birth']);
-    $Firts_Name = strtoupper(validate($_POST['Firts_Name']));
+    $First_Name = strtoupper(validate($_POST['First_Name']));
     $Second_Name = !empty($_POST['Second_Name']) ? strtoupper(validate($_POST['Second_Name'])) : '';
     $First_LastName = strtoupper(validate($_POST['First_LastName']));
     $Second_LastName = !empty($_POST['Second_LastName']) ? strtoupper(validate($_POST['Second_LastName'])) : '';
@@ -160,9 +160,9 @@ if ($action === 'action_edit') {
 
 
     //Update data on responsible
-    $QueryResponsible = "UPDATE responsibles SET Document_Type = ?, Identification_Document = ?, Date_Birth = ?, Firts_Name = ?, Second_Name = ?, First_LastName = ?, Second_LastName = ?, Phone_Number = ?, Email = ?, Gender = ?, Comment_Responsible = ?, Date = ? WHERE Id_Responsible = ?";
+    $QueryResponsible = "UPDATE responsibles SET Document_Type = ?, Identification_Document = ?, Date_Birth = ?, First_Name = ?, Second_Name = ?, First_LastName = ?, Second_LastName = ?, Phone_Number = ?, Email = ?, Gender = ?, Comment_Responsible = ?, Date = ? WHERE Id_Responsible = ?";
     $stmtResponsible = $Connection->prepare($QueryResponsible);
-    $stmtResponsible->bind_param("ssssssssssssi", $Document_Type, $Identification_Document, $Date_Birth, $Firts_Name, $Second_Name, $First_LastName, $Second_LastName, $Phone_Number, $Email, $Gender, $Comment_Responsible, $Date, $Id_Responsible);
+    $stmtResponsible->bind_param("ssssssssssssi", $Document_Type, $Identification_Document, $Date_Birth, $First_Name, $Second_Name, $First_LastName, $Second_LastName, $Phone_Number, $Email, $Gender, $Comment_Responsible, $Date, $Id_Responsible);
     $stmtResponsible->execute();
 
 
