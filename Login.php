@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="CSS/Login.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="icon" href="images/favicon-16x16.png" type="image/x-icon">
 </head>
 
 <body>
@@ -28,20 +29,22 @@
 
                 <!-- Username input field -->
                 <div class="input-box">
-                    <img src="Images/icon-user.png" class="icon">
-                    <input type="text" id="User" name="User">
+                    <span class="icon"><i class='bx bx-user'></i></span>
+                    <input type="text" id="User" name="User" required>
                     <label class="label">Usuario</label>
                 </div>
 
                 <!-- Password input field -->
                 <div class="input-box">
-                    <img src="Images/icon-padlock.png" class="icon">
-                    <input type="password" id="Password" name="Password">
+                    <span class="icon"><i class='bx bx-lock-alt'></i></span>
+                    <input type="password" id="Password" name="Password" required>
                     <label class="label">Contraseña</label>
                 </div>
 
 
-                <a href="#" class="forgot-password">¿Olvidar Contraseña?</a>
+             <!--   <div class="forgot">
+                    <a href="#" class="forgot-password">¿Olvidar Contraseña?</a>
+                </div> -->
 
                 <button type="submit" class="btn-login">Iniciar Sesión</button>
             </form>
@@ -85,4 +88,5 @@
         });
     </script>
 </body>
+
 </html>
