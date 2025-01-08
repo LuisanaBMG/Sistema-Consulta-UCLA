@@ -1,4 +1,5 @@
 <?php
+// Initialize the session, include database connection settings, require study consultation config, and check user authentication
 session_start();
 include_once('../Configuration/Connection_DB.php');
 
@@ -17,27 +18,25 @@ if (!isset($_SESSION['Id_User'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar Datos Académicos</title>
+
+    <!-- External stylesheet links -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/b-2.2.3/r-2.2.7/sp-1.2.2/sl-1.0.1/datatables.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="../CSS/Sidebar.css">
     <link rel="stylesheet" href="../CSS/Academic_Consultation.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="icon" href="../images/favicon-16x16.png" type="image/x-icon">
 
 </head>
 
 <body>
-
+    <!-- Header section -->
     <header class="header">
         <div class="header_container">
             <img src="../Images/logo_UCLA.png" alt="" class="header_img">
-            <a href="Dashboard.php" class="header_logo">UCLA</a>
-
-            <div class="header_search">
-                <input type="search" placeholder="Buscar" class="header_input">
-                <i class="bx bx-search  header_icon" style="color: #012460;"></i>
-            </div>
+            <a href="Dashboard.php" class="header_logo">UNIVERSIDAD CENTROOCCIDENTAL LISANDRO ALVARADO</a>
 
             <div class="header_toggle">
                 <i class="bx bx-menu" id="header-toggle" style="color: #012460;"></i>
@@ -45,9 +44,11 @@ if (!isset($_SESSION['Id_User'])) {
         </div>
     </header>
 
+    <!-- Navigation bar -->
     <div class="nav" id="navbar">
         <nav class="nav_container">
 
+            <!-- Navigation items -->
             <div>
 
                 <a href="#" class="nav_link nav_logo">
@@ -60,14 +61,14 @@ if (!isset($_SESSION['Id_User'])) {
 
                     <div class="nav_items">
                         <h3 class="nav_subtitle">MENÚ</h3>
-
-                        <a href="Dashboard.php" class="nav_link">
+                        <!-- Navigation links -->
+                        <a href="Dashboard.php" class="nav_link active">
                             <i class="bx bx-home-alt nav_icon" style="color: #012460;"></i>
                             <span class="nav_name">Panel Principal</span>
                         </a>
 
                         <div class="nav_dropdown">
-                            <a href="#" class="nav_link active">
+                            <a href="#" class="nav_link">
                                 <i class="bx bx-group nav_icon" style="color: #012460;"></i>
                                 <span class="nav_name">Estudiantes</span>
                                 <i class="bx bx-chevron-down nav_dropdown-icon" style="color: #012460;"></i>
@@ -101,7 +102,7 @@ if (!isset($_SESSION['Id_User'])) {
 
                     </div>
 
-                    <div class="nav_items">
+                    <!-- <div class="nav_items">
                         <h3 class="nav_subtitle">PERFIL</h3>
 
                         <a href="#" class="nav_link">
@@ -113,10 +114,11 @@ if (!isset($_SESSION['Id_User'])) {
                             <i class="bx bx-cog nav_icon" style="color: #012460;"></i>
                             <span class="nav_name">Ajuste</span>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
+            <!-- Logout link -->
             <a href="Sign_Out.php" class="nav_link nav_logout">
                 <i class="bx bx-log-out nav_icon" style="color: #012460;"></i>
                 <span class="nav_name">Cerrar Sesión</span>
@@ -125,6 +127,7 @@ if (!isset($_SESSION['Id_User'])) {
         </nav>
     </div>
 
+    <!-- Main content -->
     <main>
         <section>
             <div class="container mt-5">
@@ -150,22 +153,24 @@ if (!isset($_SESSION['Id_User'])) {
                         <table id="data-table" class="table table-striped data-table table1">
                             <thead>
                                 <tr>
-                                    <th style="display:none;">ID</th>
+                                    <!-- Table headers -->
+                                    <th> </th>
                                     <th>DIMINUTIVO DE ESTUDIO</th>
                                     <th>NOMBRE DE ESTUDIO</th>
-                                    <th style="display:none;">FECHA</th>
+                                    <th> </th>
                                     <th>ACCIÓN</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                // Display data from database
                                 if ($ResultStudyType !== false && $ResultStudyType->num_rows > 0) {
                                     while ($Row = mysqli_fetch_assoc($ResultStudyType)) {
                                         echo "<tr>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Id_Study_Types"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Id_Study_Types"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Diminutive_Study"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Study_Type"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Date"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
                                         echo "<button class='btn btn-sm btn-primary view-btn' data-bs-toggle='modal' data-bs-target='#studyTypeModal'><i class='bx bx-show-alt'></i></button> ";
                                         echo "<button class='btn btn-sm btn-secondary edit-btn' data-bs-toggle='modal' data-bs-target='#studyTypeModal'><i class='bx bx-edit'></i></button> ";
@@ -212,6 +217,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Save Modal -->
                     <div class="modal fade" id="SaveType" tabindex="-1" aria-labelledby="SaveTypeLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -229,6 +235,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Delete  Modal -->
                     <div class="modal fade" id="DeleteType" tabindex="-1" aria-labelledby="DeleteTypeLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -254,26 +261,27 @@ if (!isset($_SESSION['Id_User'])) {
                         <table id="data-table" class="table table-striped data-table table2">
                             <thead>
                                 <tr>
-                                    <th style="display:none;">ID</th>
+                                    <!-- Table headers -->
+                                    <th>ID</th>
                                     <th>DIMINUTIVO DE UNIDAD</th>
                                     <th>NOMBRE DE UNIDAD</th>
-                                    <th style="display:none;">FECHA</th>
+                                    <th>FECHA</th>
                                     <th>ACCIÓN</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                // Display data from database
                                 if ($ResultUnits !== false && $ResultUnits->num_rows > 0) {
                                     while ($Row = mysqli_fetch_assoc($ResultUnits)) {
                                         echo "<tr>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Id_Units"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Id_Units"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Diminutive_Unit"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Attached_Unit"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Date"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
                                         echo "<button class='btn btn-sm btn-primary view-btn' data-bs-toggle='modal' data-bs-target='#unitModal'><i class='bx bx-show-alt'></i></button> ";
                                         echo "<button class='btn btn-sm btn-secondary edit-btn' data-bs-toggle='modal' data-bs-target='#unitModal'><i class='bx bx-edit'></i></button> ";
-                                        //echo "<button class='btn btn-sm btn-danger delete-btn'><i class='bx bx-trash'></i></button>";
                                         echo "</td>";
                                         echo "</tr>";
                                     }
@@ -309,7 +317,6 @@ if (!isset($_SESSION['Id_User'])) {
 
                                 </div>
                                 <div class="modal-footer">
-                                    <!--<button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">Cerrar</button>-->
                                     <button type="button" class="btn btn-primary save-changes-unit" data-bs-toggle="modal" data-bs-target="#SaveUnit">Guardar Cambios</button>
                                     <button type="button" class="btn btn-danger delete-btn-unit" data-bs-toggle="modal" data-bs-target="#DeleteUnit">Eliminar</button>
                                 </div>
@@ -318,6 +325,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Save Modal -->
                     <div class="modal fade" id="SaveUnit" tabindex="-1" aria-labelledby="SaveUnitLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -335,6 +343,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Delete  Modal -->
                     <div class="modal fade" id="DeleteUnit" tabindex="-1" aria-labelledby="DeleteUnitLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -359,22 +368,24 @@ if (!isset($_SESSION['Id_User'])) {
                         <table id="data-table" class="table table-striped data-table table3">
                             <thead>
                                 <tr>
-                                    <th style="display:none;">ID</th>
+                                    <!-- Table headers -->
+                                    <th>ID</th>
                                     <th>NÚMERO DE ACADEMIA</th>
                                     <th>NOMBRE DE ACADEMIA</th>
-                                    <th style="display:none;">FECHA</th>
+                                    <th>FECHA</th>
                                     <th>ACCIÓN</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                // Display data from database
                                 if ($ResultAcademy !== false && $ResultAcademy->num_rows > 0) {
                                     while ($Row = mysqli_fetch_assoc($ResultAcademy)) {
                                         echo "<tr>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Id_Academy"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Id_Academy"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Academy_Number"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Academy_Name"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Date"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
                                         echo "<button class='btn btn-sm btn-primary view-btn' data-bs-toggle='modal' data-bs-target='#academyModal'><i class='bx bx-show-alt'></i></button> ";
                                         echo "<button class='btn btn-sm btn-secondary edit-btn' data-bs-toggle='modal' data-bs-target='#academyModal'><i class='bx bx-edit'></i></button> ";
@@ -422,6 +433,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Save Modal -->
                     <div class="modal fade" id="SaveAc" tabindex="-1" aria-labelledby="SaveAcLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -439,6 +451,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Delete  Modal -->
                     <div class="modal fade" id="DeleteAc" tabindex="-1" aria-labelledby="DeleteAcLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -466,22 +479,24 @@ if (!isset($_SESSION['Id_User'])) {
                         <table id="data-table" class="table table-striped data-table table4">
                             <thead>
                                 <tr>
-                                    <th style="display:none;">ID</th>
+                                    <!-- Table headers -->
+                                    <th> </th>
                                     <th>DIMINUTIVO DE UNIDAD DE RECURSO</th>
                                     <th>NOMBRE DE UNIDAD DE RECURSO</th>
-                                    <th style="display:none;">FECHA</th>
+                                    <th> </th>
                                     <th>ACCIÓN</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                // Display data from database
                                 if ($ResultUnitResources !== false && $ResultUnitResources->num_rows > 0) {
                                     while ($Row = mysqli_fetch_assoc($ResultUnitResources)) {
                                         echo "<tr>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Id_Resources"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Id_Resources"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Diminutive_Resource"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Resource_Name"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Date"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
                                         echo "<button class='btn btn-sm btn-primary view-btn' data-bs-toggle='modal' data-bs-target='#resourceModal'><i class='bx bx-show-alt'></i></button> ";
                                         echo "<button class='btn btn-sm btn-secondary edit-btn' data-bs-toggle='modal' data-bs-target='#resourceModal'><i class='bx bx-edit'></i></button> ";
@@ -517,7 +532,7 @@ if (!isset($_SESSION['Id_User'])) {
                                     </div>
                                     <div class="mb-3">
                                         <label for="Date_Resource" class="form-label">Fecha de Registro</label>
-                                        <input type="date" class="form-control" id="Date_Resource" readonly>
+                                        <input type="date" class="form-control" id="Date_Resource" name="Date_Resource" readonly>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -528,6 +543,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Save Modal -->
                     <div class="modal fade" id="SaveUr" tabindex="-1" aria-labelledby="SaveUrLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -545,6 +561,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Delete  Modal -->
                     <div class="modal fade" id="DeleteUr" tabindex="-1" aria-labelledby="DeleteUrLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -570,23 +587,25 @@ if (!isset($_SESSION['Id_User'])) {
                         <table id="data-table" class="table table-striped data-table table5">
                             <thead>
                                 <tr>
-                                    <th style="display:none;">ID</th>
+                                    <!-- Table headers -->
+                                    <th>ID</th>
                                     <th>NOMBRE DE ASOCIADO</th>
                                     <th>OBSERVACIÓN</th>
-                                    <th style="display:none;">FECHA</th>
+                                    <th>FECHA</th>
                                     <th>ACCIÓN</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                // Display data from database
                                 if ($ResultAssociate !== false && $ResultAssociate->num_rows > 0) {
                                     while ($Row = mysqli_fetch_assoc($ResultAssociate)) {
                                         echo "<tr>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Id_Associate"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Id_Associate"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Associate_Name"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Associate_Comment"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Date"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
                                         echo "<button class='btn btn-sm btn-primary view-btn' data-bs-toggle='modal' data-bs-target='#associateModal'><i class='bx bx-show-alt'></i></button> ";
                                         echo "<button class='btn btn-sm btn-secondary edit-btn' data-bs-toggle='modal' data-bs-target='#associateModal'><i class='bx bx-edit'></i></button> ";
@@ -634,6 +653,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Save Modal -->
                     <div class="modal fade" id="SaveAs" tabindex="-1" aria-labelledby="SaveAsLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -651,6 +671,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Delete  Modal -->
                     <div class="modal fade" id="DeleteAs" tabindex="-1" aria-labelledby="DeleteAsLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -676,50 +697,52 @@ if (!isset($_SESSION['Id_User'])) {
                         <table id="data-table" class="table table-striped data-table table6">
                             <thead>
                                 <tr>
-                                    <th style="display:none;">ID</th>
-                                    <th style="display:none;">ID</th>
-                                    <th style="display:none;">ID</th>
-                                    <th style="display:none;">TIPO DE IDENTIFICACIÓN</th>
+                                    <!-- Table headers -->
+                                    <th>ID</th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
                                     <th>IDENTIFICACIÓN</th>
-                                    <th style="display:none;">FECHA DE CUMPLEAÑOS</th>
+                                    <th> </th>
                                     <th>NOMBRE</th>
-                                    <th style="display:none;">SEGUNDO NOMBRE</th>
-                                    <th style="display:none;">PRIMER APELLIDO</th>
-                                    <th style="display:none;">SEGUNDO APELLIDO</th>
-                                    <th style="display:none;">TELÉFONO</th>
-                                    <th style="display:none;">CORREO</th>
-                                    <th style="display:none;">GENERO</th>
-                                    <th style="display:none;">OBSERVACION</th>
-                                    <th style="display:none;">FECHA</th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
+                                    <th> </th>
                                     <th>ACCIÓN</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                // Display data from database
                                 if ($ResultResponsibles !== false && $ResultResponsibles->num_rows > 0) {
                                     while ($Row = mysqli_fetch_assoc($ResultResponsibles)) {
                                         echo "<tr>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Id_Responsible"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Document_Type"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Identification_Document"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Id_Responsible"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Document_Type"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Identification_Document"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Document_Type"] . " " . $Row["Identification_Document"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Date_Birth"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Firts_Name"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Second_Name"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["First_LastName"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Second_LastName"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Date_Birth"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["First_Name"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Second_Name"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["First_LastName"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Second_LastName"]) . "</td>";
                                         $combinedName = '';
-                                        if (isset($Row['Firts_Name'])) $combinedName .= $Row['Firts_Name'];
+                                        if (isset($Row['First_Name'])) $combinedName .= $Row['First_Name'];
                                         if (isset($Row['Second_Name'])) $combinedName .= ' ' . $Row['Second_Name'];
                                         if (isset($Row['First_LastName'])) $combinedName .= ' ' . $Row['First_LastName'];
                                         if (isset($Row['Second_LastName'])) $combinedName .= ' ' . $Row['Second_LastName'];
                                         $combinedName = rtrim($combinedName, ' ');
                                         echo "<td>" . htmlspecialchars($combinedName) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Phone_Number"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Email"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Gender"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Comment_Responsible"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Date"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Phone_Number"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Email"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Gender"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Comment_Responsible"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
                                         echo "<button class='btn btn-sm btn-primary view-btn' data-bs-toggle='modal' data-bs-target='#responsibleModal'><i class='bx bx-show-alt'></i></button> ";
                                         echo "<button class='btn btn-sm btn-secondary edit-btn' data-bs-toggle='modal' data-bs-target='#responsibleModal'><i class='bx bx-edit'></i></button> ";
@@ -754,18 +777,17 @@ if (!isset($_SESSION['Id_User'])) {
                                                     <option value="J-">Persona Jurídica</option>
                                                     <option value="P-">Pasaporte</option>
                                                     <option value="E-">Extranjero</option>
-                                                    <option value="G-">Entidad Gubernamental</option>
                                                 </select>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="Firts_Name" class="form-label">Primer Nombre</label>
-                                                <input type="text" class="form-control" id="Firts_Name" name="Firts_Name">
+                                                <label for="First_Name" class="form-label">Primer Nombre</label>
+                                                <input type="text" class="form-control" id="First_Name" name="First_Name" oninput="lettersOnly(this)">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="First_LastName" class="form-label">Primer Apellido</label>
-                                                <input type="text" class="form-control" id="First_LastName" name="First_LastName">
+                                                <input type="text" class="form-control" id="First_LastName" name="First_LastName" oninput="lettersOnly(this)">
                                             </div>
 
                                             <div class="mb-3">
@@ -775,12 +797,12 @@ if (!isset($_SESSION['Id_User'])) {
 
                                             <div class="mb-3">
                                                 <label for="Email" class="form-label">Correo Electrónico</label>
-                                                <input type="email" class="form-control" id="Email" name="Email">
+                                                <input type="email" class="form-control" id="Email" name="Email" onblur="validateEmail(this)">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="Date_Responsible" class="form-label">Fecha de Registro</label>
-                                                <input type="date" class="form-control" id="Date_Responsible" readonly>
+                                                <input type="date" class="form-control" id="Date_Responsible" name="Date_Responsible" readonly>
                                             </div>
                                         </div>
 
@@ -792,17 +814,17 @@ if (!isset($_SESSION['Id_User'])) {
 
                                             <div class="mb-3">
                                                 <label for="Second_Name" class="form-label">Segundo Nombre</label>
-                                                <input type="text" class="form-control" id="Second_Name" name="Second_Name">
+                                                <input type="text" class="form-control" id="Second_Name" name="Second_Name" oninput="lettersOnly(this)">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="Second_LastName" class="form-label">Segundo Apellido</label>
-                                                <input type="text" class="form-control" id="Second_LastName" name="Second_LastName">
+                                                <input type="text" class="form-control" id="Second_LastName" name="Second_LastName" oninput="lettersOnly(this)">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="Phone_Number" class="form-label">Número de Teléfono</label>
-                                                <input type="text" class="form-control" id="Phone_Number" name="Phone_Number">
+                                                <input type="text" class="form-control" id="Phone_Number" name="Phone_Number" oninput="validatePhone(this)">
                                             </div>
 
                                             <div class="mb-3">
@@ -817,7 +839,7 @@ if (!isset($_SESSION['Id_User'])) {
 
                                             <div class="mb-3">
                                                 <label for="Comment_Responsible" class="form-label">Observación del Responsable</label>
-                                                <input type="text" class="form-control" id="Comment_Responsible">
+                                                <input type="text" class="form-control" id="Comment_Responsible" name="Comment_Responsible">
                                             </div>
                                         </div>
                                     </div>
@@ -830,6 +852,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Save Modal -->
                     <div class="modal fade" id="SaveRp" tabindex="-1" aria-labelledby="SaveRpLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -847,6 +870,7 @@ if (!isset($_SESSION['Id_User'])) {
                         </div>
                     </div>
 
+                    <!-- Delete  Modal -->
                     <div class="modal fade" id="DeleteRp" tabindex="-1" aria-labelledby="DeleteRpLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -872,23 +896,25 @@ if (!isset($_SESSION['Id_User'])) {
                         <table id="data-table" class="table table-striped data-table table7">
                             <thead>
                                 <tr>
-                                    <th style="display:none;">ID</th>
+                                    <!-- Table headers -->
+                                    <th> </th>
                                     <th>NOMBRE DE ASOCIADO</th>
                                     <th>NOMBRE DE RESPONSABLE</th>
-                                    <th style="display:none;">FECHA</th>
+                                    <th> </th>
                                     <th>ACCIÓN</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                // Display data from database
                                 if ($ResultResponsibleAssociate !== false && $ResultResponsibleAssociate->num_rows > 0) {
                                     while ($Row = mysqli_fetch_assoc($ResultResponsibleAssociate)) {
                                         echo "<tr>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Id_RA"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Id_RA"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["A_Name"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Full_Name"]) . "</td>";
-                                        echo "<td style='display:none;'>" . htmlspecialchars($Row["Date"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
                                         echo "<button class='btn btn-sm btn-primary view-btn' data-bs-toggle='modal' data-bs-target='#ARModal'><i class='bx bx-show-alt'></i></button> ";
                                         echo "</td>";
@@ -924,6 +950,7 @@ if (!isset($_SESSION['Id_User'])) {
                                             <label for="A_Name" class="form-label">Nombre del Asociado</label>
                                             <select id="A_Name" name="A_Name" class="form-select custom-select">
                                                 <option value="" disabled selected>Seleccione un Asociado</option>
+                                                <!-- The options will be filled in dynamically  -->
                                                 <?php
                                                 $asociados_query = "SELECT Id_Associate, Associate_Name, Status FROM associates WHERE Status='Active'";
                                                 $getAsociados = mysqli_query($Connection, $asociados_query);
@@ -948,14 +975,15 @@ if (!isset($_SESSION['Id_User'])) {
                                             <label for="Responsible_ID" class="form-label">Nombre del Responsable</label>
                                             <select id="Responsible_ID" name="Responsible_ID" class="form-select custom-select">
                                                 <option value="" disabled selected>Seleccione un Responsable</option>
+                                                <!-- The options will be filled in dynamically  -->
                                                 <?php
-                                                $responsibles_query = "SELECT Id_Responsible, Firts_Name, First_LastName, Status FROM responsibles WHERE Status='Active'";
+                                                $responsibles_query = "SELECT Id_Responsible, First_Name, First_LastName, Status FROM responsibles WHERE Status='Active'";
                                                 $getResponsibles = mysqli_query($Connection, $responsibles_query);
 
                                                 if ($getResponsibles) {
                                                     while ($row = mysqli_fetch_assoc($getResponsibles)) {
                                                         $Id_Responsible = $row['Id_Responsible'];
-                                                        $FullName = $row['Firts_Name'] . ' ' . $row['First_LastName'];
+                                                        $FullName = $row['First_Name'] . ' ' . $row['First_LastName'];
                                                 ?>
                                                         <option value="<?php echo $Id_Responsible; ?>"><?php echo $FullName; ?></option>
                                                 <?php
@@ -986,8 +1014,10 @@ if (!isset($_SESSION['Id_User'])) {
         </section>
     </main>
 
-    <script src="../JS/Modal.js"></script>
+    <!-- Include external scripts -->
     <script src="../JS/Sidebar.js"></script>
+    <script src="../JS/Validation.js"></script>
+    <script src="../JS/Modal.js"></script>
     <script src="../JS/Academic_Consultation.js"></script>
     <script src="../bootstrap/js/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
@@ -996,6 +1026,7 @@ if (!isset($_SESSION['Id_User'])) {
     <script src="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/b-2.2.3/r-2.2.7/sp-1.2.2/sl-1.0.1/datatables.min.js"></script>
 
+    <!-- Initialize DataTables plugin -->
     <script>
         $(document).ready(function() {
             $('.data-table').DataTable({
@@ -1007,6 +1038,7 @@ if (!isset($_SESSION['Id_User'])) {
         });
     </script>
 
+    <!-- Handle success messages -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
@@ -1033,6 +1065,7 @@ if (!isset($_SESSION['Id_User'])) {
         });
     </script>
 
+    <!-- Handle error messages -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);

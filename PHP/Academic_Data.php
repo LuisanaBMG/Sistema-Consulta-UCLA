@@ -1,4 +1,5 @@
 <?php
+// Initialize the session, include database connection settings, require study consultation config, and check user authentication
 session_start();
 include_once('../Configuration/Connection_DB.php');
 
@@ -16,26 +17,23 @@ if (!isset($_SESSION['Id_User'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos Académicos</title>
 
+    <!-- External stylesheet links -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="../CSS/Sidebar.css">
     <link rel="stylesheet" href="../CSS/Academic_Data.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="icon" href="../images/favicon-16x16.png" type="image/x-icon">
 
 </head>
 
 <body>
-
+    <!-- Header section -->
     <header class="header">
         <div class="header_container">
             <img src="../Images/logo_UCLA.png" alt="" class="header_img">
-            <a href="Dashboard.php" class="header_logo">UCLA</a>
-
-            <div class="header_search">
-                <input type="search" placeholder="Buscar" class="header_input">
-                <i class="bx bx-search  header_icon" style="color: #012460;"></i>
-            </div>
+            <a href="Dashboard.php" class="header_logo">UNIVERSIDAD CENTROOCCIDENTAL LISANDRO ALVARADO</a>
 
             <div class="header_toggle">
                 <i class="bx bx-menu" id="header-toggle" style="color: #012460;"></i>
@@ -43,9 +41,11 @@ if (!isset($_SESSION['Id_User'])) {
         </div>
     </header>
 
+    <!-- Navigation bar -->
     <div class="nav" id="navbar">
         <nav class="nav_container">
 
+            <!-- Navigation items -->
             <div>
 
                 <a href="#" class="nav_link nav_logo">
@@ -58,14 +58,14 @@ if (!isset($_SESSION['Id_User'])) {
 
                     <div class="nav_items">
                         <h3 class="nav_subtitle">MENÚ</h3>
-
-                        <a href="Dashboard.php" class="nav_link">
+                        <!-- Navigation links -->
+                        <a href="Dashboard.php" class="nav_link active">
                             <i class="bx bx-home-alt nav_icon" style="color: #012460;"></i>
                             <span class="nav_name">Panel Principal</span>
                         </a>
 
                         <div class="nav_dropdown">
-                            <a href="#" class="nav_link active">
+                            <a href="#" class="nav_link">
                                 <i class="bx bx-group nav_icon" style="color: #012460;"></i>
                                 <span class="nav_name">Estudiantes</span>
                                 <i class="bx bx-chevron-down nav_dropdown-icon" style="color: #012460;"></i>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['Id_User'])) {
 
                     </div>
 
-                    <div class="nav_items">
+                    <!-- <div class="nav_items">
                         <h3 class="nav_subtitle">PERFIL</h3>
 
                         <a href="#" class="nav_link">
@@ -111,10 +111,11 @@ if (!isset($_SESSION['Id_User'])) {
                             <i class="bx bx-cog nav_icon" style="color: #012460;"></i>
                             <span class="nav_name">Ajuste</span>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
+            <!-- Logout link -->
             <a href="Sign_Out.php" class="nav_link nav_logout">
                 <i class="bx bx-log-out nav_icon" style="color: #012460;"></i>
                 <span class="nav_name">Cerrar Sesión</span>
@@ -123,12 +124,13 @@ if (!isset($_SESSION['Id_User'])) {
         </nav>
     </div>
 
-
+    <!-- Main content -->
     <main>
         <section>
             <div class="container mt-5">
                 <h2 class="mb-4">Registrar Datos Académicos</h2>
 
+                <!-- Registration Form -->
                 <form action="../Configuration/Academic_Data.php" id="study_form" method="POST">
                     <div class="mb-3">
                         <label for="Register_Type" class="form-label">Seleccione el tipo de registro</label>
@@ -225,7 +227,6 @@ if (!isset($_SESSION['Id_User'])) {
                                     <option value="J-">Persona Jurídica</option>
                                     <option value="P-">Pasaporte</option>
                                     <option value="E-">Extranjero</option>
-                                    <option value="G-">Entidad Gubernamental</option>
                                 </select>
                             </div>
                             <div class="column">
@@ -240,33 +241,33 @@ if (!isset($_SESSION['Id_User'])) {
                             </div>
                             <div class="column">
                                 <label for="Register_Responsible" class="form-label">Primer Nombre</label>
-                                <input type="text" placeholder="Ingrese Primer Nombre" class="form-control" id="Register_Responsible" name="Firts_Name">
+                                <input type="text" placeholder="Ingrese Primer Nombre" class="form-control" id="Register_Responsible" name="First_Name" oninput="lettersOnly(this)">
                             </div>
                         </div>
                         <div class="row">
                             <div class="column">
                                 <label for="Register_Responsible" class="form-label">Segundo Nombre</label>
-                                <input type="text" placeholder="Ingrese Segundo Nombre" class="form-control" id="Register_Responsible" name="Second_Name">
+                                <input type="text" placeholder="Ingrese Segundo Nombre" class="form-control" id="Register_Responsible" name="Second_Name" oninput="lettersOnly(this)">
                             </div>
                             <div class="column">
                                 <label for="Register_Responsible" class="form-label">Primer Apellido</label>
-                                <input type="text" placeholder="Ingrese Primer Apellido" class="form-control" id="Register_Responsible" name="First_LastName">
+                                <input type="text" placeholder="Ingrese Primer Apellido" class="form-control" id="Register_Responsible" name="First_LastName" oninput="lettersOnly(this)">
                             </div>
                         </div>
                         <div class="row">
                             <div class="column">
                                 <label for="Register_Responsible" class="form-label">Segundo Apellido</label>
-                                <input type="text" placeholder="Ingrese Segundo Apellido" class="form-control" id="Register_Responsible" name="Second_LastName">
+                                <input type="text" placeholder="Ingrese Segundo Apellido" class="form-control" id="Register_Responsible" name="Second_LastName" oninput="lettersOnly(this)">
                             </div>
                             <div class="column">
                                 <label for="Register_Responsible" class="form-label">Número de Teléfono</label>
-                                <input type="text" placeholder="Ingrese Número de Teléfono" class="form-control" id="Register_Responsible" name="Phone_Number">
+                                <input type="text" placeholder="Ingrese Número de Teléfono" class="form-control" id="Register_Responsible" name="Phone_Number" oninput="numbersOnly(this)">
                             </div>
                         </div>
                         <div class="row">
                             <div class="column">
                                 <label for="Register_Responsible" class="form-label">Correo Electrónico</label>
-                                <input type="email" placeholder="Ingrese Correo" class="form-control" id="Register_Responsible" name="Email">
+                                <input type="email" placeholder="Ingrese Correo" class="form-control" id="Register_Responsible" name="Email" onblur="validateEmail(this)">
                             </div>
 
 
@@ -298,6 +299,7 @@ if (!isset($_SESSION['Id_User'])) {
                                 <label for="Associate" class="form-label">Nombre de Asociado</label>
                                 <select class="form-select" id="Associate" name="Associate">
                                     <option value="" disabled selected>Seleccione un asociado</option>
+                                    <!-- The options will be filled in dynamically  -->
                                     <?php
                                     $asociados_query = "SELECT Id_Associate, Associate_Name, Status FROM associates WHERE Status='Active'";
                                     $getAsociados = mysqli_query($Connection, $asociados_query);
@@ -321,14 +323,15 @@ if (!isset($_SESSION['Id_User'])) {
                                 <label for="Responsible" class="form-label">Nombre del Responsable</label>
                                 <select class="form-select" id="Responsible" name="Responsible">
                                     <option value="" disabled selected>Seleccione un responsable</option>
+                                    <!-- The options will be filled in dynamically  -->
                                     <?php
-                                    $responsibles_query = "SELECT Id_Responsible, Firts_Name, First_LastName, Status FROM responsibles WHERE Status='Active'";
+                                    $responsibles_query = "SELECT Id_Responsible, First_Name, First_LastName, Status FROM responsibles WHERE Status='Active'";
                                     $getResponsibles = mysqli_query($Connection, $responsibles_query);
 
                                     if ($getResponsibles) {
                                         while ($row = mysqli_fetch_assoc($getResponsibles)) {
                                             $Id_Responsible = $row['Id_Responsible'];
-                                            $FullName = $row['Firts_Name'] . ' ' . $row['First_LastName'];
+                                            $FullName = $row['First_Name'] . ' ' . $row['First_LastName'];
                                     ?>
                                             <option value="<?php echo $Id_Responsible; ?>"><?php echo $FullName; ?></option>
                                     <?php
@@ -369,14 +372,17 @@ if (!isset($_SESSION['Id_User'])) {
         </section>
     </main>
 
+    <!-- Include external scripts -->
+    <script src="../JS/Sidebar.js"></script>
     <script src="../JS/Confirmation.js"></script>
     <script src="../JS/Academic_Data.js"></script>
-    <script src="../JS/Sidebar.js"></script>
+    <script src="../JS/Validation.js"></script>
     <script src="../bootstrap/js/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <!-- Handle success messages -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
@@ -400,6 +406,7 @@ if (!isset($_SESSION['Id_User'])) {
         });
     </script>
 
+    <!-- Handle error messages -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);

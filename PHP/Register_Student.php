@@ -14,7 +14,7 @@ if (!isset($_SESSION['Id_User'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Tipo de Estudio</title>
+    <title>Registrar Estudiante</title>
 
     <!-- External stylesheet links -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -109,7 +109,6 @@ if (!isset($_SESSION['Id_User'])) {
                             <span class="nav_name">Ajuste</span>
                         </a>
                     </div> -->
-
                 </div>
             </div>
 
@@ -122,166 +121,165 @@ if (!isset($_SESSION['Id_User'])) {
         </nav>
     </div>
 
-
     <main>
         <section>
             <div class="container_form">
-                <header>Registrar Estudio</header>
+                <header>Registrar Estudiante</header>
 
                 <!-- Registration Form -->
-                <form action="../Configuration/Register_Study.php" method="POST">
+                <form action="../Configuration/Register_Student.php" method="POST">
                     <div class="details ">
-                        <span class="title">Detalles de tipo de Estudio</span>
+                        <span class="title">Detalles Personales</span>
                         <div class="fields">
 
                             <div class="input-field">
-                                <label for="">Tipo de Estudio</label>
-                                <select id="Id_Study_Types" name="Id_Study_Types">
-                                    <option value="" disabled selected>Seleccione el Tipo de Estudio</option>
-                                    <!-- The options will be filled in dynamically  -->
-                                    <?php
-                                    $StudyType_query = "SELECT Id_Study_Types, Study_Type, Status FROM study_types WHERE Status='Active'";
-                                    $getStudyType = mysqli_query($Connection, $StudyType_query);
-
-                                    if ($getStudyType) {
-                                        while ($row = mysqli_fetch_assoc($getStudyType)) {
-                                            $Id_Study_Types = $row['Id_Study_Types'];
-                                            $Study_Type = $row['Study_Type'];
-                                    ?>
-                                            <option value="<?php echo $Id_Study_Types; ?>"><?php echo $Study_Type; ?></option>
-                                    <?php
-                                        }
-                                        mysqli_free_result($getStudyType);
-                                    } else {
-                                        echo "Error al obtener los tipo de estudio: " . mysqli_error($Connection);
-                                    }
-                                    ?>
+                                <label for="Document_Type" class="form-label">Tipo de Documento</label>
+                                <select id="Document_Type" name="Document_Type" class="form-select">
+                                    <option value="" disabled selected>Seleccione un tipo de documento</option>
+                                    <option value="V-">Venezolano</option>
+                                    <option value="J-">Persona Jurídica</option>
+                                    <option value="P-">Pasaporte</option>
+                                    <option value="E-">Extranjero</option>
                                 </select>
                             </div>
 
                             <div class="input-field">
-                                <label for="">Unidad Adscrita</label>
-                                <select id="Id_Units" name="Id_Units">
-                                    <option value="" disabled selected>Seleccione Unidad Adscrita</option>
-                                    <!-- The options will be filled in dynamically  -->
-                                    <?php
-                                    $Unit_query = "SELECT Id_Units, Attached_Unit, Status FROM attached_units WHERE Status='Active'";
-                                    $getUnit = mysqli_query($Connection, $Unit_query);
+                                <label for="Identification_Document" class="form-label">Documento de Identificación</label>
+                                <input type="text" class="form-control" placeholder="Documento de Identificación" id="Identification_Document" name="Identification_Document" required>
+                            </div>
 
-                                    if ($getUnit) {
-                                        while ($row = mysqli_fetch_assoc($getUnit)) {
-                                            $Id_Units = $row['Id_Units'];
-                                            $Attached_Unit = $row['Attached_Unit'];
-                                    ?>
-                                            <option value="<?php echo $Id_Units; ?>"><?php echo $Attached_Unit; ?></option>
-                                    <?php
-                                        }
-                                        mysqli_free_result($getUnit);
-                                    } else {
-                                        echo "Error al obtener unidades adscritas: " . mysqli_error($Connection);
-                                    }
-                                    ?>
+                            <div class="input-field">
+                                <label for="First_Name" class="form-label">Primer Nombre</label>
+                                <input type="text" class="form-control" placeholder="Primer Nombre" id="First_Name" name="First_Name" required oninput="lettersOnly(this)">
+                            </div>
 
+
+                            <div class="input-field">
+                                <label for="Second_Name" class="form-label">Segundo Nombre</label>
+                                <input type="text" class="form-control" placeholder="Segundo Nombre" id="Second_Name" name="Second_Name" oninput="lettersOnly(this)">
+                            </div>
+
+                            <div class="input-field">
+                                <label for="First_LastName" class="form-label">Primer Apellido</label>
+                                <input type="text" class="form-control" placeholder="Primer Apellido" id="First_LastName" name="First_LastName" required oninput="lettersOnly(this)">
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Second_LastName" class="form-label">Segundo Apellido</label>
+                                <input type="text" class="form-control" placeholder="Segundo Apellido" id="Second_LastName" name="Second_LastName" oninput="lettersOnly(this)">
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Date_Birth" class="form-label">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" placeholder="Fecha de Nacimiento" id="Date_Birth" name="Date_Birth" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Phone_Number" class="form-label">Número de Teléfono</label>
+                                <input type="text" class="form-control" placeholder="Número de Teléfono" id="Phone_Number" name="Phone_Number" required oninput="validatePhone(this)">
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Email" class="form-label">Correo Eletrónico</label>
+                                <input type="email" class="form-control" placeholder="Correo Eletrónico" id="Email" name="Email" required onblur="validateEmail(this)">
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Gender">Género</label>
+                                <select id="Gender" name="Gender">
+                                    <option value="" disabled selected>Seleccione un género</option>
+                                    <option value="Female">Femenino</option>
+                                    <option value="Male">Masculino</option>
+                                    <option value="Other">Otro</option>
                                 </select>
                             </div>
 
                             <div class="input-field">
-                                <label for="">Cohorte</label>
-                                <input type="text" placeholder="Ingrese Cohorte" id="Cohort" name="Cohort" required oninput="numbersOnly(this)">
+                                <label for="Comment_Student" class="form-label">Observación de Estudiante</label>
+                                <input type="text" class="form-control" placeholder="Observación de Estudiante" id="Comment_Student" name="Comment_Student">
                             </div>
 
                             <div class="input-field">
-                                <label for="">Año</label>
-                                <input type="text" placeholder="Ingrese Año" id="Year" name="Year" required oninput="numbersOnly(this)">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="">Academia</label>
-                                <select id="Id_Academy" name="Id_Academy">
-                                    <option value="" disabled selected>Seleccione Academia</option>
-                                    <!-- The options will be filled in dynamically  -->
-                                    <?php
-                                    $Academy_query = "SELECT Id_Academy, Academy_Name, Status FROM academy WHERE Status='Active'";
-                                    $getAcademy = mysqli_query($Connection, $Academy_query);
-
-                                    if ($getAcademy) {
-                                        while ($row = mysqli_fetch_assoc($getAcademy)) {
-                                            $Id_Academy = $row['Id_Academy'];
-                                            $Academy_Name = $row['Academy_Name'];
-                                    ?>
-                                            <option value="<?php echo $Id_Academy; ?>"><?php echo $Academy_Name; ?></option>
-                                    <?php
-                                        }
-                                        mysqli_free_result($getAcademy);
-                                    } else {
-                                        echo "Error al obtener las academias: " . mysqli_error($Connection);
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="">Número Identificación</label>
-                                <input type="text" placeholder="Ingrese Número de Identificación" id="Identification_Document" name="Identification_Document" required>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="">Nombre de Estudio</label>
-                                <input type="text" placeholder="Ingrese Nombre de Estudio" id="Study_Name" name="Study_Name" required>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="">Responsable Asociado</label>
-                                <select id="Id_RA" name="Id_RA">
-                                    <option value="" disabled selected>Seleccione Responsable Asociado</option>
-                                    <!-- The options will be filled in dynamically  -->
-                                    <?php
-                                    if (!mysqli_connect_errno()) {
-                                        $responsibleA_query = "SELECT Id_RA, A_Name, Full_Name FROM responsible_associate";
-
-                                        if ($result = mysqli_query($Connection, $responsibleA_query)) {
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                $Id_RA = $row['Id_RA'];
-                                                $A_Name = $row['A_Name'];
-                                                $Full_Name = $row['Full_Name'] ?? '';
-
-                                                echo "<option value='$Id_RA'>$A_Name - $Full_Name</option>";
-                                            }
-
-                                            mysqli_free_result($result);
-                                        } else {
-                                            echo "Error al obtener los responsables asociados: " . mysqli_error($Connection);
-                                        }
-                                    }
-                                    ?>
-
-                                </select>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="">Número de Horas</label>
-                                <input type="text" placeholder="Ingrese Número de Horas" id="Number_Hours" name="Number_Hours" required oninput="numbersOnly(this)">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="">Observación</label>
-                                <input type="text" placeholder="Ingrese Observación" id="Comment_Studies" name="Comment_Studies">
+                                <input type="hidden">
                             </div>
                         </div>
 
-                        <button type="button" class="btn btn-primary btn-save" data-bs-toggle="modal" data-bs-target="#SaveStudie">Guardar</button>
-
                     </div>
 
+                    <div class="details">
+                        <span class="title">Detalles de estudios</span>
+                        <div class="fields">
+
+
+                            <div class="input-field">
+                                <label for="Id_Studies">Estudio</label>
+                                <select id="Id_Studies" name="Id_Studies">
+                                    <option value="" disabled selected>Seleccione estudio</option>
+                                    <!-- The options will be filled in dynamically  -->
+                                    <?php
+                                    $Studies_query = "SELECT Id_Studies, Study_Name, Status FROM studies WHERE Status='Active'";
+                                    $getStudies = mysqli_query($Connection, $Studies_query);
+
+                                    if ($getStudies) {
+                                        while ($row = mysqli_fetch_assoc($getStudies)) {
+                                            $Id_Studies = $row['Id_Studies'];
+                                            $Study_Name = $row['Study_Name'];
+                                    ?>
+                                            <option value="<?php echo $Id_Studies; ?>"><?php echo $Study_Name; ?></option>
+                                    <?php
+                                        }
+                                        mysqli_free_result($getStudies);
+                                    } else {
+                                        echo "Error al obtener estudios: " . mysqli_error($Connection);
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Book" class="form-label">Libro de Estudio</label>
+                                <input type="text" class="form-control" placeholder="Libro de Estudio" id="Book" name="Book" oninput="numbersOnly(this)" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Folio" class="form-label">Folio de Estudio</label>
+                                <input type="text" class="form-control" placeholder="Folio de Estudio" id="Folio" name="Folio" oninput="numbersOnly(this)" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Line" class="form-label">Linea de Estudio</label>
+                                <input type="text" class="form-control" placeholder="Linea de Estudio" id="Line" name="Line" oninput="numbersOnly(this)" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Start_Date" class="form-label">Fecha de Inicio</label>
+                                <input type="date" class="form-control" placeholder="Fecha de Inicio" id="Start_Date" name="Start_Date" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Termination_Date" class="form-label">Fecha de Culminación</label>
+                                <input type="date" class="form-control" placeholder="Fecha de Culminación" id="Termination_Date" name="Termination_Date" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Comment_SS" class="form-label">Observación de Estudio</label>
+                                <input type="text" class="form-control" placeholder="Observación de Estudio" id="Comment_SS" name="Comment_SS">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-save" data-bs-toggle="modal" data-bs-target="#SaveStudent">Guardar</button>
+
                     <!-- Save Modal -->
-                    <div class="modal fade" id="SaveStudie" tabindex="-1" aria-labelledby="SaveStudieLabel" aria-hidden="true">
+                    <div class="modal fade" id="SaveStudent" tabindex="-1" aria-labelledby="SaveStudentLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="SaveStudieLabel">Confirmar Registro</h5>
+                                    <h5 class="modal-title" id="SaveStudentLabel">Confirmar Registro</h5>
                                 </div>
                                 <div class="modal-body">
-                                    ¿Desea registrar el tipo de estudio?
+                                    ¿Desea registrar estudiante?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -355,6 +353,7 @@ if (!isset($_SESSION['Id_User'])) {
             }
         });
     </script>
+
 
 </body>
 
