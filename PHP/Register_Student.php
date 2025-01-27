@@ -212,21 +212,26 @@ if (!isset($_SESSION['Id_User'])) {
 
 
                             <div class="input-field">
-                                <label for="Id_Studies">Estudio</label>
+                                <label for="Id_Studies">Folio</label>
                                 <select id="Id_Studies" name="Id_Studies">
-                                    <option value="" disabled selected>Seleccione estudio</option>
+                                    <option value="" disabled selected>Seleccione Folio</option>
                                     <!-- The options will be filled in dynamically  -->
                                     <?php
-                                    $Studies_query = "SELECT Id_Studies, Study_Name, Status FROM studies WHERE Status='Active'";
+                                    $Studies_query = "SELECT Id_Studies, Study_Name, Start_Date, Termination_Date, Status FROM studies WHERE Status='Active'";
                                     $getStudies = mysqli_query($Connection, $Studies_query);
 
                                     if ($getStudies) {
                                         while ($row = mysqli_fetch_assoc($getStudies)) {
                                             $Id_Studies = $row['Id_Studies'];
                                             $Study_Name = $row['Study_Name'];
-                                    ?>
-                                            <option value="<?php echo $Id_Studies; ?>"><?php echo $Study_Name; ?></option>
-                                    <?php
+                                            $Start_Date = $row['Start_Date'];
+                                            $Termination_Date = $row['Termination_Date'];
+
+                                            // formatted dates
+                                            $formatted_start_date = date('Y-m-d', strtotime($Start_Date));
+                                            $formatted_termination_date = date('Y-m-d', strtotime($Termination_Date));
+
+                                            echo "<option value='$Id_Studies' data-start-date='$formatted_start_date' data-termination-date='$formatted_termination_date'>$Study_Name</option>";
                                         }
                                         mysqli_free_result($getStudies);
                                     } else {
@@ -237,8 +242,8 @@ if (!isset($_SESSION['Id_User'])) {
                             </div>
 
                             <div class="input-field">
-                                <label for="Book" class="form-label">Libro de Estudio</label>
-                                <input type="text" class="form-control" placeholder="Libro de Estudio" id="Book" name="Book" oninput="numbersOnly(this)" required>
+                                <label for="Book" class="form-label">Libro de Folio</label>
+                                <input type="text" class="form-control" placeholder="Libro de Folio" id="Book" name="Book" oninput="numbersOnly(this)" required>
                             </div>
 
                             <div class="input-field">
@@ -247,23 +252,23 @@ if (!isset($_SESSION['Id_User'])) {
                             </div>
 
                             <div class="input-field">
-                                <label for="Line" class="form-label">Linea de Estudio</label>
-                                <input type="text" class="form-control" placeholder="Linea de Estudio" id="Line" name="Line" oninput="numbersOnly(this)" required>
+                                <label for="Line" class="form-label">Linea de Folio</label>
+                                <input type="text" class="form-control" placeholder="Linea de Folio" id="Line" name="Line" oninput="numbersOnly(this)" required>
                             </div>
 
                             <div class="input-field">
                                 <label for="Start_Date" class="form-label">Fecha de Inicio</label>
-                                <input type="date" class="form-control" placeholder="Fecha de Inicio" id="Start_Date" name="Start_Date" required>
+                                <input type="text" class="form-control" placeholder="Fecha de Inicio" id="Start_Date" name="Start_Date" required readonly>
                             </div>
 
                             <div class="input-field">
                                 <label for="Termination_Date" class="form-label">Fecha de Culminación</label>
-                                <input type="date" class="form-control" placeholder="Fecha de Culminación" id="Termination_Date" name="Termination_Date" required>
+                                <input type="text" class="form-control" placeholder="Fecha de Culminación" id="Termination_Date" name="Termination_Date" required readonly>
                             </div>
 
                             <div class="input-field">
-                                <label for="Comment_SS" class="form-label">Observación de Estudio</label>
-                                <input type="text" class="form-control" placeholder="Observación de Estudio" id="Comment_SS" name="Comment_SS">
+                                <label for="Comment_SS" class="form-label">Observación</label>
+                                <input type="text" class="form-control" placeholder="Observación" id="Comment_SS" name="Comment_SS">
                             </div>
 
                         </div>
@@ -301,6 +306,25 @@ if (!isset($_SESSION['Id_User'])) {
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('Id_Studies');
+            const startInput = document.getElementById('Start_Date');
+            const terminationInput = document.getElementById('Termination_Date');
+
+            select.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                if (selectedOption.value) {
+                    startInput.value = selectedOption.getAttribute('data-start-date');
+                    terminationInput.value = selectedOption.getAttribute('data-termination-date');
+                } else {
+                    startInput.value = '';
+                    terminationInput.value = '';
+                }
+            });
+        });
+    </script>
 
     <!-- Handle success messages -->
     <script>
@@ -353,6 +377,8 @@ if (!isset($_SESSION['Id_User'])) {
             }
         });
     </script>
+
+
 
 
 </body>

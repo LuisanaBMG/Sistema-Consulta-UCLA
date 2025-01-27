@@ -304,7 +304,7 @@ if (!isset($_SESSION['Id_User'])) {
 
                                             <div class="mb-3">
                                                 <label for="Termination_Date" class="form-label">Fecha de Culminación</label>
-                                                <input type="date" class="form-control" id="Termination_Date" name="Termination_Date" required>
+                                                <input type="date" class="form-control" id="Termination_Date" name="Termination_Date" required readonly>
                                             </div>
 
                                             <div class="mb-3">
@@ -358,7 +358,7 @@ if (!isset($_SESSION['Id_User'])) {
 
                                             <div class="mb-3">
                                                 <label for="Start_Date" class="form-label">Fecha de Inicio</label>
-                                                <input type="date" class="form-control" id="Start_Date" name="Start_Date" required>
+                                                <input type="date" class="form-control" id="Start_Date" name="Start_Date" required readonly>
                                             </div>
 
                                             <div class="mb-3">

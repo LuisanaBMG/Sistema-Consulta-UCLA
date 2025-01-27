@@ -264,6 +264,17 @@ if (!isset($_SESSION['Id_User'])) {
                             </div>
 
                             <div class="input-field">
+                                <label for="Start_Date" class="form-label">Fecha de Inicio</label>
+                                <input type="date" class="form-control" placeholder="Fecha de Inicio" id="Start_Date" name="Start_Date" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="Termination_Date" class="form-label">Fecha de Culminación</label>
+                                <input type="date" class="form-control" placeholder="Fecha de Culminación" id="Termination_Date" name="Termination_Date" required>
+                            </div>
+
+
+                            <div class="input-field">
                                 <label for="">Observación</label>
                                 <input type="text" placeholder="Ingrese Observación" id="Comment_Studies" name="Comment_Studies">
                             </div>

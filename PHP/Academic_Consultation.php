@@ -155,7 +155,7 @@ if (!isset($_SESSION['Id_User'])) {
                                 <tr>
                                     <!-- Table headers -->
                                     <th> </th>
-                                    <th>DIMINUTIVO DE ESTUDIO</th>
+                                    <th>SIGLAS DE ESTUDIO</th>
                                     <th>NOMBRE DE ESTUDIO</th>
                                     <th> </th>
                                     <th>ACCIÓN</th>
@@ -168,7 +168,7 @@ if (!isset($_SESSION['Id_User'])) {
                                     while ($Row = mysqli_fetch_assoc($ResultStudyType)) {
                                         echo "<tr>";
                                         echo "<td>" . htmlspecialchars($Row["Id_Study_Types"]) . "</td>";
-                                        echo "<td>" . htmlspecialchars($Row["Diminutive_Study"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Acronyms_Study"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Study_Type"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
@@ -196,8 +196,8 @@ if (!isset($_SESSION['Id_User'])) {
                                 <div class="modal-body">
                                     <input type="hidden" id="Id_Study_Types" name="Id_Study_Types">
                                     <div class="mb-3">
-                                        <label for="Diminutive_Study" class="form-label">Diminutivo del Tipo de Estudio</label>
-                                        <input type="text" class="form-control" id="Diminutive_Study" name="Diminutive_Study">
+                                        <label for="Acronyms_Study" class="form-label">Siglas del Tipo de Estudio</label>
+                                        <input type="text" class="form-control" id="Acronyms_Study" name="Acronyms_Study">
                                     </div>
                                     <div class="mb-3">
                                         <label for="Study_Type" class="form-label">Nombre del Tipo de Estudio</label>
@@ -263,7 +263,7 @@ if (!isset($_SESSION['Id_User'])) {
                                 <tr>
                                     <!-- Table headers -->
                                     <th>ID</th>
-                                    <th>DIMINUTIVO DE UNIDAD</th>
+                                    <th>SIGLAS DE UNIDAD</th>
                                     <th>NOMBRE DE UNIDAD</th>
                                     <th>FECHA</th>
                                     <th>ACCIÓN</th>
@@ -276,7 +276,7 @@ if (!isset($_SESSION['Id_User'])) {
                                     while ($Row = mysqli_fetch_assoc($ResultUnits)) {
                                         echo "<tr>";
                                         echo "<td>" . htmlspecialchars($Row["Id_Units"]) . "</td>";
-                                        echo "<td>" . htmlspecialchars($Row["Diminutive_Unit"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Acronyms_Unit"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Attached_Unit"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
@@ -303,8 +303,8 @@ if (!isset($_SESSION['Id_User'])) {
                                 <div class="modal-body">
                                     <input type="hidden" id="Id_Units" name="Id_Units">
                                     <div class="mb-3">
-                                        <label for="Diminutive_Unit" class="form-label">Diminutivo de la Unidad Adscrita</label>
-                                        <input type="text" class="form-control" id="Diminutive_Unit" name="Diminutive_Unit">
+                                        <label for="Acronyms_Unit" class="form-label">Siglas de la Unidad Adscrita</label>
+                                        <input type="text" class="form-control" id="Acronyms_Unit" name="Acronyms_Unit">
                                     </div>
                                     <div class="mb-3">
                                         <label for="Attached_Unit" class="form-label">Nombre de la Unidad Adscrita</label>
@@ -481,7 +481,7 @@ if (!isset($_SESSION['Id_User'])) {
                                 <tr>
                                     <!-- Table headers -->
                                     <th> </th>
-                                    <th>DIMINUTIVO DE UNIDAD DE RECURSO</th>
+                                    <th>SIGLAS DE UNIDAD DE RECURSO</th>
                                     <th>NOMBRE DE UNIDAD DE RECURSO</th>
                                     <th> </th>
                                     <th>ACCIÓN</th>
@@ -494,7 +494,7 @@ if (!isset($_SESSION['Id_User'])) {
                                     while ($Row = mysqli_fetch_assoc($ResultUnitResources)) {
                                         echo "<tr>";
                                         echo "<td>" . htmlspecialchars($Row["Id_Resources"]) . "</td>";
-                                        echo "<td>" . htmlspecialchars($Row["Diminutive_Resource"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($Row["Acronyms_Resource"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Resource_Name"]) . "</td>";
                                         echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                         echo "<td>";
@@ -523,8 +523,8 @@ if (!isset($_SESSION['Id_User'])) {
                                     <input type="hidden" id="Id_Resources" name="Id_Resources">
 
                                     <div class="mb-3">
-                                        <label for="Diminutive_Resource" class="form-label">Diminutivo de la Unidad de Recursos</label>
-                                        <input type="text" class="form-control" id="Diminutive_Resource" name="Diminutive_Resource">
+                                        <label for="Acronyms_Resource" class="form-label">Siglas de la Unidad de Recursos</label>
+                                        <input type="text" class="form-control" id="Acronyms_Resource" name="Acronyms_Resource">
                                     </div>
                                     <div class="mb-3">
                                         <label for="Resource_Name" class="form-label">Nombre de la Unidad de Recursos</label>

@@ -150,8 +150,8 @@ if (!isset($_SESSION['Id_User'])) {
                         <h3>Registrar Tipo de Estudio</h3>
                         <div class="row">
                             <div class="column">
-                                <label for="Register_Study" class="form-label">Diminutivo</label>
-                                <input type="text" placeholder="Ingrese Diminutivo" class="form-control" id="Register_Study" name="Diminutive_Study">
+                                <label for="Register_Study" class="form-label">Siglas</label>
+                                <input type="text" placeholder="Ingrese Siglas" class="form-control" id="Register_Study" name="Acronyms_Study">
                             </div>
                             <div class="column">
                                 <label for="Register_Study" class="form-label">Nombre del Tipo de Estudio</label>
@@ -164,8 +164,8 @@ if (!isset($_SESSION['Id_User'])) {
                         <h3>Registrar Unidad de Adscripción</h3>
                         <div class="row">
                             <div class="column">
-                                <label for="Register_Unit" class="form-label">Diminutivo</label>
-                                <input type="text" placeholder="Ingrese Diminutivo" class="form-control" id="Register_Unit" name="Diminutive_Unit">
+                                <label for="Register_Unit" class="form-label">Siglas</label>
+                                <input type="text" placeholder="Ingrese Siglas" class="form-control" id="Register_Unit" name="Acronyms_Unit">
                             </div>
                             <div class="column">
                                 <label for="Register_Unit" class="form-label">Nombre de Unidad Adscripta</label>
@@ -192,8 +192,8 @@ if (!isset($_SESSION['Id_User'])) {
                         <h3>Registrar Unidad Generadora de Recursos</h3>
                         <div class="row">
                             <div class="column">
-                                <label for="Register_Resource" class="form-label">Diminutivo</label>
-                                <input type="text" placeholder="Ingrese Diminutivo" class="form-control" id="Register_Resource" name="Diminutive_Resource">
+                                <label for="Register_Resource" class="form-label">Siglas</label>
+                                <input type="text" placeholder="Ingrese Siglas" class="form-control" id="Register_Resource" name="Acronyms_Resource">
                             </div>
                             <div class="column">
                                 <label for="Register_Resource" class="form-label">Nombre de Unidad de Recursos</label>

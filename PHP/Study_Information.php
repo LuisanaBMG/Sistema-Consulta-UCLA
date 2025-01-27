@@ -179,6 +179,8 @@ if (!isset($_SESSION['Id_User'])) {
                                     echo "<td>" . htmlspecialchars($Row["Academy_Name"]) . "</td>";
                                     echo "<td>" . htmlspecialchars($Row["Id_RA"]) . "</td>";
                                     echo "<td>" . htmlspecialchars($Row["Associate"]) . "</td>";
+                                    echo "<td>" . htmlspecialchars($Row["Start_Date"]) . "</td>";
+                                    echo "<td>" . htmlspecialchars($Row["Termination_Date"]) . "</td>";
                                     echo "<td>" . htmlspecialchars($Row["Date"]) . "</td>";
                                     echo "<td>";
                                     echo "<button class='btn btn-sm btn-primary view-btn' data-bs-toggle='modal' data-bs-target='#studyModal'><i class='bx bx-show-alt'></i></button> ";
@@ -289,6 +291,12 @@ if (!isset($_SESSION['Id_User'])) {
                                             </div>
 
                                             <div class="mb-3">
+                                                <label for="Termination_Date" class="form-label">Fecha de Culminación</label>
+                                                <input type="date" class="form-control" id="Termination_Date" name="Termination_Date" required>
+                                            </div>
+
+
+                                            <div class="mb-3">
                                                 <label for="Date" class="form-label">Fecha de Registro</label>
                                                 <input type="date" class="form-control" id="Date" name="Date" readonly>
                                             </div>
@@ -364,6 +372,12 @@ if (!isset($_SESSION['Id_User'])) {
 
                                                 </select>
                                             </div>
+
+                                            <div class="mb-3">
+                                                <label for="Start_Date" class="form-label">Fecha de Inicio</label>
+                                                <input type="date" class="form-control" id="Start_Date" name="Start_Date" required>
+                                            </div>
+
 
                                             <div class="mb-3">
                                                 <label for="Comment_Studies" class="form-label">Observación</label>
@@ -511,4 +525,5 @@ if (!isset($_SESSION['Id_User'])) {
         });
     </script>
 </body>
+
 </html>
