@@ -178,6 +178,8 @@ main {
 .table1 th:nth-child(15),
 .table1 th:nth-child(16),
 .table1 th:nth-child(17),
+.table1 td:nth-child(18),
+.table1 td:nth-child(19),
 
 .table1 td:nth-child(1),
 .table1 td:nth-child(4),
@@ -193,7 +195,9 @@ main {
 .table1 td:nth-child(14),
 .table1 td:nth-child(15),
 .table1 td:nth-child(16),
-.table1 td:nth-child(17) {
+.table1 td:nth-child(17),
+.table1 td:nth-child(18),
+.table1 td:nth-child(19) {
     display: none !important;
 }
 
