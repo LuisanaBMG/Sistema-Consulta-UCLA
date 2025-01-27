@@ -26,36 +26,36 @@ if (isset($_POST['Register_Type'])) {
         switch ($_POST['Register_Type']) {
             case 'section1':
                 // Validate study details
-                $Diminutive_Study = strtoupper(validate($_POST['Diminutive_Study']));
+                $Acronyms_Study = strtoupper(validate($_POST['Acronyms_Study']));
                 $Study_Type = strtoupper(validate($_POST['Study_Type']));
 
                 // Check if fields are empty
-                if (empty($Diminutive_Study) || empty($Study_Type)) {
+                if (empty($Acronyms_Study) || empty($Study_Type)) {
                     header("Location: ../PHP/Academic_Data.php?error=Datos_Vacios");
                     exit();
                 }
 
                 // Prepare and execute INSERT query for study types
-                $StudyRegistration = $Connection->prepare("INSERT INTO study_types (Diminutive_Study, Study_Type, Date, Status) VALUES (?, ?, NOW(), ?)");
-                $StudyRegistration->bind_param("sss", $Diminutive_Study, $Study_Type, $Status);
+                $StudyRegistration = $Connection->prepare("INSERT INTO study_types (Acronyms_Study, Study_Type, Date, Status) VALUES (?, ?, NOW(), ?)");
+                $StudyRegistration->bind_param("sss", $Acronyms_Study, $Study_Type, $Status);
                 $StudyRegistration->execute();
 
                 break;
 
             case 'section2':
                 // Validate unit details
-                $Diminutive_Unit = strtoupper(validate($_POST['Diminutive_Unit']));
+                $Acronyms_Unit = strtoupper(validate($_POST['Acronyms_Unit']));
                 $Attached_Unit = strtoupper(validate($_POST['Attached_Unit']));
 
                 // Check if fields are empty
-                if (empty($Diminutive_Unit) || empty($Attached_Unit)) {
+                if (empty($Acronyms_Unit) || empty($Attached_Unit)) {
                     header("Location: ../PHP/Academic_Data.php?error=Datos_Vacios");
                     exit();
                 }
 
                 // Prepare and execute INSERT query for attached units
-                $UnitRegistration = $Connection->prepare("INSERT INTO attached_units (Diminutive_Unit, Attached_Unit, Date, Status) VALUES (?, ?, NOW(), ?)");
-                $UnitRegistration->bind_param("sss", $Diminutive_Unit, $Attached_Unit, $Status);
+                $UnitRegistration = $Connection->prepare("INSERT INTO attached_units (Acronyms_Unit, Attached_Unit, Date, Status) VALUES (?, ?, NOW(), ?)");
+                $UnitRegistration->bind_param("sss", $Acronyms_Unit, $Attached_Unit, $Status);
                 $UnitRegistration->execute();
 
                 break;
@@ -78,18 +78,18 @@ if (isset($_POST['Register_Type'])) {
                 break;
 
             case 'section4':
-                $Diminutive_Resource = strtoupper(validate($_POST['Diminutive_Resource']));
+                $Acronyms_Resource = strtoupper(validate($_POST['Acronyms_Resource']));
                 $Resource_Name = strtoupper(validate($_POST['Resource_Name']));
 
                 // Check if fields are empty
-                if (empty($Diminutive_Resource) || empty($Resource_Name)) {
+                if (empty($Acronyms_Resource) || empty($Resource_Name)) {
                     header("Location: ../PHP/Academic_Data.php?error=Datos_Vacios");
                     exit();
                 }
 
                 // Prepare and execute INSERT query for unit resources
-                $ResourceRegistration = $Connection->prepare("INSERT INTO unit_resources (Diminutive_Resource, Resource_Name, Date, Status) VALUES (?, ?, NOW(), ?)");
-                $ResourceRegistration->bind_param("sss", $Diminutive_Resource, $Resource_Name, $Status);
+                $ResourceRegistration = $Connection->prepare("INSERT INTO unit_resources (Acronyms_Resource, Resource_Name, Date, Status) VALUES (?, ?, NOW(), ?)");
+                $ResourceRegistration->bind_param("sss", $Acronyms_Resource, $Resource_Name, $Status);
                 $ResourceRegistration->execute();
 
                 break;

@@ -5,7 +5,7 @@ if (!isset($_SESSION['Id_User'])) {
 }
 
 try {
-    $QueryStudy = "SELECT Id_Studies, Study_Code, Study_Name, Cohort, Year, Identification_Document, Number_Hours, Comment_Studies,  Id_Study_Types, Study_Type, Id_Units, Attached_Unit, Id_Academy, Academy_Name, Id_RA, Associate, Date FROM study_consultation";
+    $QueryStudy = "SELECT Id_Studies, Study_Code, Study_Name, Cohort, Year, Identification_Document, Number_Hours, Comment_Studies,  Id_Study_Types, Study_Type, Id_Units, Attached_Unit, Id_Academy, Academy_Name, Id_RA, Associate, Start_Date, Termination_Date, Date FROM study_consultation";
     $StatementStudy = $Connection->prepare($QueryStudy);
     if ($StatementStudy === false) {
         header("Location: ../PHP/Study_Information.php?error=Error_BaseDatos");

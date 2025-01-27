@@ -22,12 +22,12 @@ $action = $_POST['action_btn'] ?? '';
 
 if (isset($_POST['Id_Study_Types']) && !empty($_POST['Id_Study_Types'])) {
     $Id_Study_Types = intval($_POST['Id_Study_Types']);
-    $Diminutive_Study = strtoupper(validate($_POST['Diminutive_Study']));
+    $Acronyms_Study = strtoupper(validate($_POST['Acronyms_Study']));
     $Study_Type = strtoupper(validate($_POST['Study_Type']));
 
 } elseif (isset($_POST['Id_Units']) && !empty($_POST['Id_Units'])) {
     $Id_Units = intval($_POST['Id_Units']);
-    $Diminutive_Unit = strtoupper(validate($_POST['Diminutive_Unit']));
+    $Acronyms_Unit = strtoupper(validate($_POST['Acronyms_Unit']));
     $Attached_Unit = strtoupper(validate($_POST['Attached_Unit']));
 
 } elseif (isset($_POST['Id_Academy']) && !empty($_POST['Id_Academy'])) {
@@ -37,7 +37,7 @@ if (isset($_POST['Id_Study_Types']) && !empty($_POST['Id_Study_Types'])) {
 
 } elseif (isset($_POST['Id_Resources']) && !empty($_POST['Id_Resources'])) {
     $Id_Resources = intval($_POST['Id_Resources']);
-    $Diminutive_Resource = strtoupper(validate($_POST['Diminutive_Resource']));
+    $Acronyms_Resource = strtoupper(validate($_POST['Acronyms_Resource']));
     $Resource_Name = strtoupper(validate($_POST['Resource_Name']));
 
 } elseif (isset($_POST['Id_Associate']) && !empty($_POST['Id_Associate'])) {
@@ -73,9 +73,9 @@ $Date = date("Y-m-d");
 
 if ($action === 'action_edit') {
     //Update data on types of studiess
-    $QueryStudyType = "UPDATE study_types SET  Diminutive_Study= ?, Study_Type = ?, Date = ? WHERE Id_Study_Types = ?";
+    $QueryStudyType = "UPDATE study_types SET  Acronyms_Study= ?, Study_Type = ?, Date = ? WHERE Id_Study_Types = ?";
     $stmtStudyType  = $Connection->prepare($QueryStudyType);
-    $stmtStudyType->bind_param("sssi", $Diminutive_Study, $Study_Type, $Date, $Id_Study_Types);
+    $stmtStudyType->bind_param("sssi", $Acronyms_Study, $Study_Type, $Date, $Id_Study_Types);
     $stmtStudyType->execute();
 
     header("Location: ../PHP/Academic_Consultation.php?success=Datos_Actualizados");
@@ -85,9 +85,9 @@ if ($action === 'action_edit') {
     }
 
     //Update data on attached units
-    $QueryAttachedUnits = "UPDATE attached_units SET  Diminutive_Unit= ?, Attached_Unit = ?, Date = ? WHERE Id_Units = ?";
+    $QueryAttachedUnits = "UPDATE attached_units SET  Acronyms_Unit= ?, Attached_Unit = ?, Date = ? WHERE Id_Units = ?";
     $stmtAttachedUnits  = $Connection->prepare($QueryAttachedUnits);
-    $stmtAttachedUnits->bind_param("sssi", $Diminutive_Unit, $Attached_Unit, $Date, $Id_Units);
+    $stmtAttachedUnits->bind_param("sssi", $Acronyms_Unit, $Attached_Unit, $Date, $Id_Units);
     $stmtAttachedUnits->execute();
 
     header("Location: ../PHP/Academic_Consultation.php?success=Datos_Actualizados");
@@ -109,9 +109,9 @@ if ($action === 'action_edit') {
     }
 
     //Update data on unit resources
-    $QueryResource = "UPDATE unit_resources SET  Diminutive_Resource= ?, Resource_Name = ?, Date = ? WHERE Id_Resources = ?";
+    $QueryResource = "UPDATE unit_resources SET  Acronyms_Resource= ?, Resource_Name = ?, Date = ? WHERE Id_Resources = ?";
     $stmtResource = $Connection->prepare($QueryResource);
-    $stmtResource->bind_param("sssi", $Diminutive_Resource, $Resource_Name, $Date, $Id_Resources);
+    $stmtResource->bind_param("sssi", $Acronyms_Resource, $Resource_Name, $Date, $Id_Resources);
     $stmtResource->execute();
 
 
