@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             var row = this.closest('tr');
             var idStudy = row.cells[0].textContent;
-            var diminutiveType = row.cells[1].textContent;
+            var AcronymsType = row.cells[1].textContent;
             var studyName = row.cells[2].textContent;
             var studyDate = row.cells[3].textContent;
 
             // Fill form fields with data from clicked row
             document.getElementById('Id_Study_Types').value = idStudy;
-            document.getElementById('Diminutive_Study').value = diminutiveType ;
+            document.getElementById('Acronyms_Study').value = AcronymsType;
             document.getElementById('Study_Type').value = studyName;
             document.getElementById('Date_Study').value = studyDate;
 
@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             var row = this.closest('tr');
             var idStudy = row.cells[0].textContent;
-            var diminutiveType  = row.cells[1].textContent;
+            var AcronymsType = row.cells[1].textContent;
             var studyName = row.cells[2].textContent;
             var studyDate = row.cells[3].textContent;
 
             // Fill form fields with data from clicked row
             document.getElementById('Id_Study_Types').value = idStudy;
-            document.getElementById('Diminutive_Study').value = diminutiveType ;
+            document.getElementById('Acronyms_Study').value = AcronymsType;
             document.getElementById('Study_Type').value = studyName;
             document.getElementById('Date_Study').value = studyDate;
 
@@ -55,12 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             var row = this.closest('tr');
             var Id_Units = row.cells[0].textContent;
-            var Diminutive_Unit = row.cells[1].textContent;
+            var Acronyms_Unit = row.cells[1].textContent;
             var Attached_Unit = row.cells[2].textContent;
             var Date_Unit = row.cells[3].textContent;
 
             document.getElementById('Id_Units').value = Id_Units;
-            document.getElementById('Diminutive_Unit').value = Diminutive_Unit;
+            document.getElementById('Acronyms_Unit').value = Acronyms_Unit;
             document.getElementById('Attached_Unit').value = Attached_Unit;
             document.getElementById('Date_Unit').value = Date_Unit;
 
@@ -78,12 +78,12 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             var row = this.closest('tr');
             var Id_Units = row.cells[0].textContent;
-            var Diminutive_Unit = row.cells[1].textContent;
+            var Acronyms_Unit = row.cells[1].textContent;
             var Attached_Unit = row.cells[2].textContent;
             var Date_Unit = row.cells[3].textContent;
 
             document.getElementById('Id_Units').value = Id_Units;
-            document.getElementById('Diminutive_Unit').value = Diminutive_Unit;
+            document.getElementById('Acronyms_Unit').value = Acronyms_Unit;
             document.getElementById('Attached_Unit').value = Attached_Unit;
             document.getElementById('Date_Unit').value = Date_Unit;
 
@@ -150,12 +150,12 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             var row = this.closest('tr');
             var Id_Resources = row.cells[0].textContent;
-            var Diminutive_Resource = row.cells[1].textContent;
+            var Acronyms_Resource = row.cells[1].textContent;
             var Resource_Name = row.cells[2].textContent;
             var Date_Resource = row.cells[3].textContent;
 
             document.getElementById('Id_Resources').value = Id_Resources;
-            document.getElementById('Diminutive_Resource').value = Diminutive_Resource;
+            document.getElementById('Acronyms_Resource').value = Acronyms_Resource;
             document.getElementById('Resource_Name').value = Resource_Name;
             document.getElementById('Date_Resource').value = Date_Resource;
 
@@ -173,12 +173,12 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             var row = this.closest('tr');
             var Id_Resources = row.cells[0].textContent;
-            var Diminutive_Resource = row.cells[1].textContent;
+            var Acronyms_Resource = row.cells[1].textContent;
             var Resource_Name = row.cells[2].textContent;
             var Date_Resource = row.cells[3].textContent;
 
             document.getElementById('Id_Resources').value = Id_Resources;
-            document.getElementById('Diminutive_Resource').value = Diminutive_Resource;
+            document.getElementById('Acronyms_Resource').value = Acronyms_Resource;
             document.getElementById('Resource_Name').value = Resource_Name;
             document.getElementById('Date_Resource').value = Date_Resource;
 
@@ -396,7 +396,9 @@ document.addEventListener('DOMContentLoaded', function () {
             var Academy_Name = row.cells[13].textContent;
             var Id_RA = row.cells[14].textContent;
             var Associate = row.cells[15].textContent;
-            var Date = row.cells[16].textContent;
+            var Start_Date = row.cells[16].textContent;
+            var Termination_Date = row.cells[17].textContent;
+            var Date = row.cells[18].textContent;
 
             document.getElementById('Id_Studies').value = Id_Studies;
             document.getElementById('Study_Code').value = Study_Code;
@@ -414,6 +416,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('Academy_Name').value = Academy_Name;
             document.getElementById('Id_RA').value = Id_RA;
             document.getElementById('Associate').value = Associate;
+            document.getElementById('Start_Date').value = Start_Date;
+            document.getElementById('Termination_Date').value = Termination_Date;
             document.getElementById('Date').value = Date;
 
             document.querySelector('.save-changes-st').style.display = 'none';
@@ -454,7 +458,9 @@ document.addEventListener('DOMContentLoaded', function () {
             var Academy_Name = row.cells[13].textContent;
             var Id_RA = row.cells[14].textContent;
             var Associate = row.cells[15].textContent;
-            var Date = row.cells[16].textContent;
+            var Start_Date = row.cells[16].textContent;
+            var Termination_Date = row.cells[17].textContent;
+            var Date = row.cells[18].textContent;
 
             document.getElementById('Id_Studies').value = Id_Studies;
             document.getElementById('Study_Code').value = Study_Code;
@@ -472,6 +478,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('Academy_Name').value = Academy_Name;
             document.getElementById('Id_RA').value = Id_RA;
             document.getElementById('Associate').value = Associate;
+            document.getElementById('Start_Date').value = Start_Date;
+            document.getElementById('Termination_Date').value = Termination_Date;
             document.getElementById('Date').value = Date;
 
 
