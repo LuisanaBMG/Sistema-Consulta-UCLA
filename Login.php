@@ -15,7 +15,7 @@
     <link rel="icon" href="images/favicon-16x16.png" type="image/x-icon">
 </head>
 
-<body>
+<body >
     <!-- Header section with logo -->
     <header>
         <img class="logo" src="Images/logo_UCLA.png" alt="Logo-Ucla">
