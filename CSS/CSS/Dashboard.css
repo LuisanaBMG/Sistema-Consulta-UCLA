@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;      
+}
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    margin: 100px auto 0;
+    color: #ffffff;
+    font-weight: 550; 
+    overflow: hidden;
+    position: relative;
+}
+
+h1:after {
+    content: '';
+    position: absolute;
+    bottom: 0.5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #ffffff;
+    transform: scaleX(0.75);
+}
+
+.wrap{
+    width: 90%;
+    max-width: 1000px;
+    color: #012460;
+    display: grid;
+    place-items: center;
+}
+
+.widget{
+    width: 40%;
+    margin: 2em;
+}
+
+.widget p{
+    display: inline-block;
+    line-height: 1em;
+    margin-bottom: 10px;
+}
+
+.date{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 0.3125rem;
+    background: rgba(255, 255, 255, 0.721);
+    padding: 20px;
+    width: 100%;
+}
+
+.clock{
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    padding: 20px;
+    font-size: 4em;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.721);
+}
+
+.clock .second-box{
+    display: inline-block;
+}
+
+.clock .seconds,
+.clock .ampm{
+    font-size: 2rem;
+    display: block;
+}
+
+.card{
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.card-body{
+    padding: 25px;
+    margin-top: -15px;
+}
+
+.card a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #012460;
+    transition: background-color 0.3s ease;
+}
+
+.card a:hover {
+    color: #0640a3;
+}
+
+.card-footer a{
+    font-size: 20px;
+}
+
+.card h3,
+.card h5{
+   color: #012460;
+   font-weight: 500;
+}

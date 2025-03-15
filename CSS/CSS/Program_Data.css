@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+
+.container {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.column {
+    flex-basis: calc(50% - 15px);
+    margin-right: 15px;
+}
+
+
+.container h2 {
+    position: relative;
+    font-size: 30px;
+    font-weight: 600;
+    color: #012460;
+    margin-top: 20px;
+}
+
+
+.container h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 50%;
+    bottom: -5px;
+    height: 2px;
+    border-radius: 8px;
+    background-color: #012460;
+}
+
+.container h3 {
+    display: block;
+    margin: 30px 0 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #012460;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.container form .form-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #2e2e2e;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.container form input[type="date"] {
+    color: #707070;
+}
+
+.container form input[type="date"]:valid {
+    color: #333;
+}
+
+
+.container form input,
+.container form select {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container form .save-changes-gg {
+    height: 45px;
+    max-width: 400px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #000000;
+    border-radius: 5px;
+    background-color: #ffc800;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.modal-footer .btn-primary,
+.modal-footer .btn-secondary {
+    height: 35px;
+    max-width: 150px;
+    width: 35%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 5px 15px;
+}
+
+.modal-footer .btn-primary {
+    background-color: #012460;
+    color: #ffffff;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #b1b1b1;
+    color: #000000;
+}
+
+@media (max-width: 750px) {
+
+    .column {
+        flex-basis: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .container form {
+        overflow-y: scroll;
+    }
+
+    .container form::-webkit-scrollbar {
+        display: none;
+    }
+
+    .container form .form-label {
+        width: 100%;
+    }
+}
+
+@media (max-width: 550px) {
+    .container form .form-label {
+        width: 100%;
+    }
+}
+
+#section1,
+#section2,
+#section3,
+#section4,
+#section5 {
+    display: none;
+}
